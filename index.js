@@ -24,40 +24,39 @@ let selected = false;
 //  * This function should execute immediately.
 //  */
 
-// (async function initialLoad() {
-//   const breedSelect = document.getElementById("breedSelect");
-//   const url = "https://api.thecatapi.com/v1/breeds";
+(async function initialLoad() {
+  const breedSelect = document.getElementById("breedSelect");
+  const url = "https://api.thecatapi.com/v1/breeds";
 
-//   try {
-//     const response = await fetch(
-//       `https://api.thecatapi.com/v1/breeds?api_key=${API_KEY}`,
-//       {
-//         method: "GET",
-//         headers: {
-//           "Content-Type": "application-JSON",
-//         },
-//       }
-//     );
+  try {
+    const response = await fetch(
+      `https://api.thecatapi.com/v1/breeds?api_key=${API_KEY}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application-JSON",
+        },
+      },
+    );
 
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
 
-//     const breeds = await response.json();
-//     breedSelect.innerHTML = "";
+    const breeds = await response.json();
 
-//     breeds.forEach((breed) => {
-//       const option = document.createElement("option");
-//       option.value = breed.id;
-//       option.textContent = breed.name;
-//       breedSelect.appendChild(option);
-//     });
-//   } catch (error) {
-//     console.error("Failed to fetch breeds:", error);
-//     breedSelect.innerHTML = "<option>Error loading breeds</option>";
-//   }
-//   retrieveData();
-// })();
+    breeds.forEach((breed) => {
+      const option = document.createElement("option");
+      option.value = breed.id;
+      option.textContent = breed.name;
+      breedSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Failed to fetch breeds:", error);
+    breedSelect.innerHTML = "<option>Error loading breeds</option>";
+  }
+  retrieveData();
+})();
 
 // /**
 //  * 2. Create an event handler for breedSelect that does the following:
@@ -74,35 +73,35 @@ let selected = false;
 //  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
 //  */
 
-// async function retrieveData() {
-//   const value = breedSelect.value;
-//   const response = await fetch(
-//     `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${value}&api_key=${API_KEY}`,
-//     {
-//       method: "GET",
-//       headers: {
-//         "Content-Type": "application-JSON",
-//       },
-//     }
-//   );
+async function retrieveData() {
+  const value = breedSelect.value;
+  const response = await fetch(
+    `https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=${value}&api_key=${API_KEY}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application-JSON",
+      },
+    },
+  );
 
-//   selected = true;
-//   if (selected === true) {
-//     Carousel.clear();
-//     const elements = await response.json();
+  selected = true;
+  if (selected === true) {
+    Carousel.clear();
+    const elements = await response.json();
 
-//     infoDump.textContent = elements[0].breeds[0].description;
+    infoDump.textContent = elements[0].breeds[0].description;
 
-//     elements.forEach((elem) => {
-//       const child = Carousel.createCarouselItem(elem.url, "alt", elem.id);
-//       Carousel.appendCarousel(child);
-//     });
-//     selected = false;
-//     Carousel.start();
-//   }
-// }
+    elements.forEach((elem) => {
+      const child = Carousel.createCarouselItem(elem.url, "alt", elem.id);
+      Carousel.appendCarousel(child);
+    });
+    selected = false;
+    Carousel.start();
+  }
+}
 
-// breedSelect.addEventListener("change", retrieveData);
+breedSelect.addEventListener("change", retrieveData);
 
 // /* 3. Fork your own sandbox, creating a new one named "JavaScript Axios Lab."
 //  */
@@ -124,105 +123,105 @@ let selected = false;
 //  * - As an added challenge, try to do this on your own without referencing the lesson material.
 //  */
 
-axios.defaults.baseURL = "https://api.thecatapi.com/v1";
+// axios.defaults.baseURL = "https://api.thecatapi.com/v1";
 
-axios.defaults.headers.common["x-api-key"] =
-  "live_NacegNF0A6v3MNWv5CMcXeSURFl13CR9H7z0iH3e4Ue6KzuWoxeUsXbomUyBLsZs";
+// axios.defaults.headers.common["x-api-key"] =
+//   "live_NacegNF0A6v3MNWv5CMcXeSURFl13CR9H7z0iH3e4Ue6KzuWoxeUsXbomUyBLsZs";
 
-// //Add axios interceptors to log the time between request and response to the console.
+// // //Add axios interceptors to log the time between request and response to the console.
 
-(async function initialLoad() {
-  const breedSelect = document.getElementById("breedSelect");
-  try {
-    const response = await axios.get(`/breeds`);
+// (async function initialLoad() {
+//   const breedSelect = document.getElementById("breedSelect");
+//   try {
+//     const response = await axios.get(`/breeds`);
 
-    let breeds = response.data;
+//     let breeds = response.data;
 
-    if (response.status !== 200) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+//     if (response.status !== 200) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
 
-    breeds.forEach((breed) => {
-      const option = document.createElement("option");
-      option.value = breed.id;
-      option.textContent = breed.name;
-      breedSelect.appendChild(option);
-    });
-  } catch (error) {
-    console.error("Failed to fetch breeds:", error);
-    breedSelect.innerHTML = "<option>Error loading breeds</option>";
-  }
-  retrieveData();
-})();
+//     breeds.forEach((breed) => {
+//       const option = document.createElement("option");
+//       option.value = breed.id;
+//       option.textContent = breed.name;
+//       breedSelect.appendChild(option);
+//     });
+//   } catch (error) {
+//     console.error("Failed to fetch breeds:", error);
+//     breedSelect.innerHTML = "<option>Error loading breeds</option>";
+//   }
+//   retrieveData();
+// })();
 
-async function retrieveData() {
-  const value = breedSelect.value;
-  const response = await axios.get(
-    `/images/search?limit=10&breed_ids=${value}`,
-    {
-      onDownloadProgress: updateProgress,
-    },
-  );
+// async function retrieveData() {
+//   const value = breedSelect.value;
+//   const response = await axios.get(
+//     `/images/search?limit=10&breed_ids=${value}`,
+//     {
+//       onDownloadProgress: updateProgress,
+//     },
+//   );
 
-  const { data, durationInMS } = await axios(
-    `/images/search?limit=10&breed_ids=${value}`,
-  );
-  // console.log(`Request took ${durationInMS} milliseconds.`);
-  // console.log(data);
+//   const { data, durationInMS } = await axios(
+//     `/images/search?limit=10&breed_ids=${value}`,
+//   );
+//   // console.log(`Request took ${durationInMS} milliseconds.`);
+//   // console.log(data);
 
-  selected = true;
-  if (selected === true) {
-    Carousel.clear();
+//   selected = true;
+//   if (selected === true) {
+//     Carousel.clear();
 
-    const elements = response.data;
-    infoDump.textContent = elements[0].breeds[0].description;
+//     const elements = response.data;
+//     infoDump.textContent = elements[0].breeds[0].description;
 
-    elements.forEach((elem) => {
-      const child = Carousel.createCarouselItem(elem.url, "alt", elem.id);
-      Carousel.appendCarousel(child);
-    });
-    selected = false;
-    Carousel.start();
-  }
-}
+//     elements.forEach((elem) => {
+//       const child = Carousel.createCarouselItem(elem.url, "alt", elem.id);
+//       Carousel.appendCarousel(child);
+//     });
+//     selected = false;
+//     Carousel.start();
+//   }
+// }
 
-axios.interceptors.request.use((request) => {
-  request.metadata = request.metadata || {};
-  request.metadata.startTime = new Date().getTime();
-  progressBar.style.width = "0%";
-  return request;
-});
+// axios.interceptors.request.use((request) => {
+//   request.metadata = request.metadata || {};
+//   request.metadata.startTime = new Date().getTime();
+//   progressBar.style.width = "0%";
+//   return request;
+// });
 
-axios.interceptors.response.use(
-  (response) => {
-    response.config.metadata.endTime = new Date().getTime();
-    response.durationInMS =
-      response.config.metadata.endTime - response.config.metadata.startTime;
-    return response;
-  },
-  (error) => {
-    error.config.metadata.endTime = new Date().getTime();
-    error.durationInMS =
-      error.config.metadata.endTime - error.config.metadata.startTime;
-    throw error;
-  },
-);
+// axios.interceptors.response.use(
+//   (response) => {
+//     response.config.metadata.endTime = new Date().getTime();
+//     response.durationInMS =
+//       response.config.metadata.endTime - response.config.metadata.startTime;
+//     return response;
+//   },
+//   (error) => {
+//     error.config.metadata.endTime = new Date().getTime();
+//     error.durationInMS =
+//       error.config.metadata.endTime - error.config.metadata.startTime;
+//     throw error;
+//   },
+// );
 
-function updateProgress(progressEvent) {
-  setTimeout(() => {
-    progressBar.style.width = `0%`;
-  }, 200);
-  const progressPercentage = progressEvent.progress * 100;
+// function updateProgress(progressEvent) {
+//   setTimeout(() => {
+//     progressBar.style.width = `0%`;
+//   }, 200);
+//   const progressPercentage = progressEvent.progress * 100;
 
-  setTimeout(() => {
-    progressBar.style.width = `${progressPercentage}%`;
-  }, 1000);
-  console.log(`Progress: ${progressPercentage}%`);
-}
+//   setTimeout(() => {
+//     progressBar.style.width = `${progressPercentage}%`;
+//   }, 1000);
+//   console.log(`Progress: ${progressPercentage}%`);
+// }
 
-breedSelect.addEventListener("change", retrieveData);
+// breedSelect.addEventListener("change", retrieveData);
 
-// /**
+// // /**
 //  * 6. Next, we'll create a progress bar to indicate the request is in progress.
 //  * - The progressBar element has already been created for you.
 //  *  - You need only to modify its "width" style property to align with the request progress.
