@@ -165,9 +165,6 @@ async function retrieveData() {
         onDownloadProgress: updateProgress,
       },
     );
-    const { data, durationInMS } = await axios(
-      `/images/search?limit=10&breed_ids=${value}`,
-    );
 
     selected = true;
     if (!response.data[0]) {
