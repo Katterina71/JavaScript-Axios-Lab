@@ -24,11 +24,10 @@ let selected = false;
 //  * This function should execute immediately.
 //  */
 
+
 (async function initialLoad() {
   const breedSelect = document.getElementById("breedSelect");
   try {
-
-    let breeds = response.data;
 
     if (response.status !== 200) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -47,7 +46,6 @@ let selected = false;
   }
   retrieveData();
 })();
-
 
 }
 
