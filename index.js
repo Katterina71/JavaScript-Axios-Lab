@@ -15,6 +15,7 @@ const API_KEY =
   "live_NacegNF0A6v3MNWv5CMcXeSURFl13CR9H7z0iH3e4Ue6KzuWoxeUsXbomUyBLsZs";
 
 let selected = false;
+
 // /**
 //  * 1. Create an async function "initialLoad" that does the following:
 //  * - Retrieve a list of breeds from the cat API using fetch().
@@ -22,6 +23,21 @@ let selected = false;
 //  *  - Each option should have a value attribute equal to the id of the breed.
 //  *  - Each option should display text equal to the name of the breed.
 //  * This function should execute immediately.
+//  */
+
+// /**
+//  * 2. Create an event handler for breedSelect that does the following:
+//  * - Retrieve information on the selected breed from the cat API using fetch().
+//  *  - Make sure your request is receiving multiple array items!
+//  *  - Check the API documentation if you're only getting a single object.
+//  * - For each object in the response array, create a new element for the carousel.
+//  *  - Append each of these new elements to the carousel.
+//  * - Use the other data you have been given to create an informational section within the infoDump element.
+//  *  - Be creative with how you create DOM elements and HTML.
+//  *  - Feel free to edit index.html and styles.css to suit your needs, but be careful!
+//  *  - Remember that functionality comes first, but user experience and design are important.
+//  * - Each new selection should clear, re-populate, and restart the Carousel.
+//  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
 //  */
 
 // (async function initialLoad() {
@@ -58,21 +74,6 @@ let selected = false;
 //   }
 //   retrieveData();
 // })();
-
-// /**
-//  * 2. Create an event handler for breedSelect that does the following:
-//  * - Retrieve information on the selected breed from the cat API using fetch().
-//  *  - Make sure your request is receiving multiple array items!
-//  *  - Check the API documentation if you're only getting a single object.
-//  * - For each object in the response array, create a new element for the carousel.
-//  *  - Append each of these new elements to the carousel.
-//  * - Use the other data you have been given to create an informational section within the infoDump element.
-//  *  - Be creative with how you create DOM elements and HTML.
-//  *  - Feel free to edit index.html and styles.css to suit your needs, but be careful!
-//  *  - Remember that functionality comes first, but user experience and design are important.
-//  * - Each new selection should clear, re-populate, and restart the Carousel.
-//  * - Add a call to this function to the end of your initialLoad function above to create the initial carousel.
-//  */
 
 // async function retrieveData() {
 //   const value = breedSelect.value;
@@ -217,12 +218,6 @@ axios.interceptors.response.use(
   },
 );
 
-// function updateProgress(ProgressEvent) {
-//   const progressPercentage = ProgressEvent.progress * 100;
-//   console.log(`Get ${ProgressEvent.progress}`);
-//   progressBar.style.width = `${progressPercentage}%`;
-// }
-
 function updateProgress(progressEvent) {
   setTimeout(() => {
     progressBar.style.width = `0%`;
@@ -282,16 +277,6 @@ export async function favourite(imgId) {
   }
 }
 
-// /**
-//  * 9. Test your favourite() function by creating a getFavourites() function.
-//  * - Use Axios to get all of your favourites from the cat API.
-//  * - Clear the carousel and display your favourites when the button is clicked.
-//  *  - You will have to bind this event listener to getFavouritesBtn yourself.
-//  *  - Hint: you already have all of the logic built for building a carousel.
-//  *    If that isn't in its own function, maybe it should be so you don't have to
-//  *    repeat yourself in this section.
-//  */
-
 async function getFavourites() {
   const favoriteImage = await axios.get(`/favourites`);
   const favoriteImg = favoriteImage.data;
@@ -309,6 +294,17 @@ async function getFavourites() {
 }
 
 getFavouritesBtn.addEventListener("click", getFavourites);
+
+// /**
+//  * 9. Test your favourite() function by creating a getFavourites() function.
+//  * - Use Axios to get all of your favourites from the cat API.
+//  * - Clear the carousel and display your favourites when the button is clicked.
+//  *  - You will have to bind this event listener to getFavouritesBtn yourself.
+//  *  - Hint: you already have all of the logic built for building a carousel.
+//  *    If that isn't in its own function, maybe it should be so you don't have to
+//  *    repeat yourself in this section.
+//  */
+
 // /**
 //  * 10. Test your site, thoroughly!
 //  * - What happens when you try to load the Malayan breed?
